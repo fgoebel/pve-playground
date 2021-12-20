@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
   (0..num-1).each do |i| # Create num identical boxes for ceph
 
     config.vm.define :"pve0#{i}" do |config|
-      config.vm.box = "debian/buster64"
+      config.vm.box = "debian/bullseye64"
       config.vm.hostname = "pve0#{i}"
 
       config.vm.network "public_network", ip: "192.168.178.21#{i}", bridge: "#{public_net_bridge_interface_name}"
