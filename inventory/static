@@ -1,0 +1,5 @@
+# You could add your cephfs_clients here
+# see playbook `cephfs.yml` for more information
+
+# [cephfs_clients]
+# localhost ansible_connection=local

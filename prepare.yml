@@ -1,0 +1,29 @@
+---
+
+# roughly this is used as a guide: https://www.netways.de/blog/2018/11/14/ceph-mimic-using-loop-devices-as-osd/
+
+
+- name: prepare hosts for ceph test deployment
+  hosts: all
+  become: true
+  vars:
+    upgrade: True
+  tasks:
+    - name: update all packages..
+      apt:
+        update_cache: True
+        upgrade: dist
+      when: upgrade | bool
+
+    - name: install required packages
+      apt:
+        name:
+          - chrony
+
+    - name: Install my ssh-key
+      ansible.posix.authorized_key:
+        user: vagrant
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDks6VRJQX+/mKBLuz1qksdpujd0BrZfaAPNswQkuEGB fabian@pc3"
+        state: present
+        exclusive: false
+
