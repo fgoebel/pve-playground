@@ -1,8 +1,5 @@
 ---
 
-# roughly this is used as a guide: https://www.netways.de/blog/2018/11/14/ceph-mimic-using-loop-devices-as-osd/
-
-
 - name: prepare host to update vbox-guest-additions
   hosts: all
   become: true
