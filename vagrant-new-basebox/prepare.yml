@@ -3,7 +3,7 @@
 # roughly this is used as a guide: https://www.netways.de/blog/2018/11/14/ceph-mimic-using-loop-devices-as-osd/
 
 
-- name: prepare hosts for Proxmox test deployment
+- name: prepare host to update vbox-guest-additions
   hosts: all
   become: true
   vars:
@@ -18,12 +18,16 @@
     - name: install required packages
       apt:
         name:
-          - chrony
+          - build-essential
+          - linux-headers-{{ ansible_kernel }}
 
-    - name: Install my ssh-key
-      ansible.posix.authorized_key:
-        user: vagrant
-        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDks6VRJQX+/mKBLuz1qksdpujd0BrZfaAPNswQkuEGB fabian@pc3"
-        state: present
-        exclusive: false
+    - name: debug
+      debug:
+        var: ansible_kernel
+
+# shutdown vm
+# add cdrom-drive and insert guest-additions iso
+# start vm
+# mount /dev/cdrom /mnt
+# sudo sh /mnt/VBox...
 
